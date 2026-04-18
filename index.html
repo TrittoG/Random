@@ -1,44 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Web Simple</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #6200ea;
-            color: white;
-            padding: 1rem;
-        }
-        main {
-            padding: 2rem;
-        }
-        footer {
-            background-color: #6200ea;
-            color: white;
-            padding: 0.5rem;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔮 Tarot Místico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a Mi Página</h1>
-    </header>
-    <main>
-        <p>Esta es una página simple creada para demostrar el uso de GitHub Pages. Puedes editar este archivo para personalizarlo.</p>
-    </main>
-    <footer>
-        <p>&copy; 2026 Mi Página Simple</p>
-    </footer>
+  <canvas id="stars-canvas"></canvas>
+
+  <!-- SCREEN 1: FORM -->
+  <div id="screen-intro" class="screen active">
+    <div class="orb"></div>
+    <h1 class="titulo">✦ Tarot Místico ✦</h1>
+    <p class="subtitulo">Las cartas revelan lo que el destino guarda</p>
+    <div class="form-card">
+      <div class="form-group">
+        <label for="inp-nombre">Tu nombre <span class="req">*</span></label>
+        <input type="text" id="inp-nombre" placeholder="¿Cómo te llamas?" maxlength="50">
+      </div>
+      <div class="form-group">
+        <label for="inp-nacimiento">Fecha de nacimiento <span class="opc">(opcional)</span></label>
+        <input type="date" id="inp-nacimiento">
+      </div>
+      <div class="form-group">
+        <label for="inp-signo">Signo del zodíaco <span class="opc">(opcional)</span></label>
+        <select id="inp-signo">
+          <option value="">— Sin especificar —</option>
+          <option>♈ Aries</option><option>♉ Tauro</option><option>♊ Géminis</option>
+          <option>♋ Cáncer</option><option>♌ Leo</option><option>♍ Virgo</option>
+          <option>♎ Libra</option><option>♏ Escorpio</option><option>♐ Sagitario</option>
+          <option>♑ Capricornio</option><option>♒ Acuario</option><option>♓ Piscis</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="inp-pregunta">Tu pregunta al universo <span class="opc">(opcional)</span></label>
+        <textarea id="inp-pregunta" placeholder="¿Qué deseas consultar a las cartas?"></textarea>
+      </div>
+      <div class="form-group">
+        <span class="field-label">¿Sobre qué consultar?</span>
+        <div class="categorias" id="categorias">
+          <button class="cat-btn selected" data-cat="todas">✦ Las 3 cartas</button>
+          <button class="cat-btn" data-cat="amor">♥ Amor</button>
+          <button class="cat-btn" data-cat="dinero">✦ Dinero</button>
+          <button class="cat-btn" data-cat="trabajo">⚙ Trabajo</button>
+        </div>
+      </div>
+      <button class="btn-principal" id="btn-consultar">✦ Consultar las cartas ✦</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: DECK -->
+  <div id="screen-mazo" class="screen">
+    <h1 class="titulo" style="margin-bottom:0.5rem">El mazo espera</h1>
+    <p class="instruccion">Respira profundo, piensa en tu pregunta<br>y cuando sientas el momento...</p>
+    <div class="mazo-wrapper" id="mazo-wrapper">
+      <div class="carta-mazo"></div>
+      <div class="carta-mazo"></div>
+      <div class="carta-mazo"></div>
+      <div class="carta-mazo"></div>
+      <div class="carta-mazo"></div>
+    </div>
+    <p id="pista-corte">✦ Haz clic para cortar el mazo ✦</p>
+  </div>
+
+  <!-- SCREEN 3: RESULT -->
+  <div id="screen-resultado" class="screen">
+    <h2 class="nombre-lectura" id="nombre-resultado"></h2>
+    <p class="subtexto-lectura" id="subtexto-resultado"></p>
+    <div id="cartas-container"></div>
+    <div class="separador">✦</div>
+    <div id="predicciones-container"></div>
+    <button class="btn-secundario" id="btn-nueva">✦ Nueva consulta ✦</button>
+  </div>
+
+  <script src="tarot-data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
