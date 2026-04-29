@@ -109,6 +109,8 @@ function drawCards(seed) {
 }
 
 // ===== BUILD RESULT =====
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
 const CAT_LABEL = { amor:'♥ Amor', dinero:'✦ Dinero', trabajo:'⚙ Trabajo' };
 const CAT_COLOR = { amor:'#c94c4c', dinero:'#c9a84c', trabajo:'#6699dd' };
 
@@ -162,7 +164,7 @@ function buildResult() {
     pred.innerHTML = `
       <div class="pred-cat" style="color:${CAT_COLOR[cat]}">${CAT_LABEL[cat]}</div>
       <div class="pred-carta">${carta.emoji} ${carta.nombre}${invertida?' <em style="font-size:.75rem;color:#888">(invertida)</em>':''}</div>
-      <div class="pred-texto">${invertida ? carta[cat].invertida : carta[cat].normal}</div>`;
+      <div class="pred-texto">${pick(invertida ? carta[cat].invertida : carta[cat].normal)}</div>`;
     predsEl.appendChild(pred);
 
     setTimeout(() => pred.classList.add('visible'), i * 280 + 1100);
